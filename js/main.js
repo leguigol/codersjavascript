@@ -270,7 +270,8 @@ const empleado={
     fechaingreso: '',
     antiguedad: '',
     categoria: '',
-    basico: ''
+    basico: '',
+    periodo: ''
 }
 
 let condicion=true;
@@ -288,6 +289,12 @@ while(condicion){
     
     let fechaing=prompt('Ingrese fecha de ingreso:')
     
+    if(fechaing===null){
+        console.log('cancelado por el usuario...');
+        condicion=false;
+        break;
+    }
+
     empleado.nombre=nombre;
     empleado.apellido=apellido;
     
@@ -344,18 +351,43 @@ while(condicion){
         } 
     }
     
-    let periodo=prompt('Indique periodo de Liquidacion (de Enero a Julio 2023 - formato MMAA)');
+    let flagPeri=true;
+    while(flagPeri){
+        let periodo=prompt('Indique periodo de Liquidacion (de Enero a Julio 2023 - formato MMAA)');
+        let mesaux=periodo.substring(0,2).trim();
+        let anoaux=periodo.substring(2,4).trim();
+        
+        // console.log('mesaux: '+mesaux);
+        // console.log('anoaux:'+anoaux);
+
+        if(isNaN(parseInt(mesaux)) || isNaN(parseInt(anoaux))){
+            console.log('Ingreso un formato no permitido')
+        }else{
+
+            if((parseInt(mesaux)>=1 && parseInt(mesaux)<=12)){
+                if(parseInt(anoaux)===23){
+                    empleado.periodo=mesaux+anoaux;
+                    flagPeri=false;
+                }else{
+                    console.log('El sistema tiene cargados basicos unicamente del año 2023, disculpe.');
+                }
+            }else{
+                console.log('Ha ingresado el periodo en un formato no aceptado');
+                condicion=false;
+            }
+        }    
+    }
     
     console.log('EMPLEADO:');
     console.log('-------------------------------------');
-    console.log(empleado.nombre+" "+empleado.apellido);
+    console.log(empleado.nombre.toUpperCase()+" "+empleado.apellido.toUpperCase());
     console.log('Fecha de ingreso: '+empleado.fechaingreso);
     console.log('Antiguedad: '+empleado.antiguedad+' Años');
     console.log('Categoria: '+empleado.categoria+"-"+categorias[empleado.categoria].nomcate);
     console.log('% de Antiguedad: '+porcentajeAntiguedad(empleado.antiguedad));
     
-    let mesp=periodo.substring(0,2);
-    let anop=periodo.substring(2,4);
+    let mesp=empleado.periodo.substring(0,2);
+    let anop=empleado.periodo.substring(2,4);
     
     // console.log('mesp:'+mesp);
     // console.log('anpp:'+anop);
