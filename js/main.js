@@ -274,13 +274,30 @@ const empleado={
     periodo: ''
 }
 
+class Carga {
+    constructor(nombre,apellido,categoria,total){
+        this.nombre=nombre.toUpperCase();
+        this.apellido=apellido.toUpperCase();
+        this.categoria=categoria;
+        this.total=parseFloat(total);
+    }
+}
+
+alert('PROCESO DE CARGA DE EMPLEADOS Y CALCULO DE RECIBO DE SUELDO')
+const empleados=[];
+
 let condicion=true;
+let contador=0;
 
 while(condicion){
 
     let nombreValido=false;
 
-    let nombre=prompt('Ingrese Nombre del empleado');
+    let nombre=prompt('Ingrese Nombre del empleado (FIN PARA TERMINAR)');
+    if(nombre.toUpperCase()=="FIN"){
+        condicion=false;
+        break;
+    }
     let apellido=prompt('Ingrese Apellido del empleado');
     
     if(nombre!=="" && apellido!==""){
@@ -403,7 +420,31 @@ while(condicion){
     let sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
     console.log('Antiguedad:     '+sumaAntiguedad.toFixed(2))
     console.log('TOTAL BRUTO:    '+sumaBruto.toFixed(2));
-    condicion=false;
-    
+
+    empleados.push(new Carga(empleado.nombre.toUpperCase(),empleado.apellido.toUpperCase(),categorias[empleado.categoria].nomcate,sumaBruto.toFixed(2)));
+    contador+=1;
 }
 
+if(empleados.length>0){
+    alert('CARGA FINALIZADA, AHORA PROCEDEREMOS A BUSCAR UN APELLIDO EN LA CARGA Y DE PASO UTILIZAR EL COMANDO FILTER PARA BUSCAR EN UN ARRAY.');
+
+    let busqueda=prompt('Ingrese Apellido a Buscar:');
+    
+    const resultado=empleados.filter((el)=>el.apellido===busqueda.toUpperCase());
+    
+    // for(t=0;t<contador;t+=1){
+    //     console.log(empleados[t]);
+    // }
+    if(resultado.length===0){
+        console.log('No se encontraron resultados con ese apellido');
+    }else{
+        resultado.forEach((emp)=>{ 
+            console.log('EMPLEADO:');
+            console.log('-------------------------------------');
+            console.log(emp.nombre.toUpperCase()+" "+emp.apellido.toUpperCase());
+            console.log('Categoria: '+emp.categoria);
+            console.log('TOTAL BRUTO:    '+emp.total.toFixed(2));
+        })
+    }
+    
+}
