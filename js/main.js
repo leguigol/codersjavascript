@@ -439,6 +439,7 @@ if(empleados.length>0){
         console.log('No se encontraron resultados con ese apellido');
     }else{
         resultado.forEach((emp)=>{ 
+            console.log('-------------------------------------');
             console.log('EMPLEADO:');
             console.log('-------------------------------------');
             console.log(emp.nombre.toUpperCase()+" "+emp.apellido.toUpperCase());
