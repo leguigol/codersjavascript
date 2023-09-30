@@ -1,4 +1,5 @@
-const empleados=[];
+const empleadosGuardados = localStorage.getItem('ArrayLocal');
+const empleados = empleadosGuardados ? JSON.parse(empleadosGuardados) : [];
 
 class Carga {
     constructor(nombre,apellido,categoria,bruto){

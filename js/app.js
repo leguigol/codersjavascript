@@ -1,16 +1,10 @@
-let empleados=[];
 const elementosAlmacenados = localStorage.getItem('ArrayLocal');
 
 const tablaElementos = document.getElementById('tablaElementos');
 
-// Obtener los elementos almacenados en localStorage
-
-// Verificar si hay elementos almacenados
 if (elementosAlmacenados) {
-    // Parsear la cadena JSON para obtener un objeto JavaScript
     const miArray = JSON.parse(elementosAlmacenados);
 
-    // Iterar sobre los elementos y agregar filas a la tabla
     miArray.forEach(elemento => {
         const fila = document.createElement('tr');
 
@@ -28,7 +22,7 @@ if (elementosAlmacenados) {
 
         const brutoCelda = document.createElement('td');
         brutoCelda.textContent = elemento.bruto;
-        fila.appendChild(categoriaCelda);
+        fila.appendChild(brutoCelda);
 
         tablaElementos.appendChild(fila);
     });
