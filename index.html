@@ -9,9 +9,24 @@
 </head>
 <body>
     <div class="container">
-        <h2 class="text-center">PROCESO DE CARGA DE EMPLEADOS Y CALCULO DE RECIBO DE SUELDO</h2>
+        <h2 class="text-center mb-3">PROCESO DE CARGA DE EMPLEADOS Y CALCULO DE RECIBO DE SUELDO</h2>
+      
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Categoria</th>
+                    <th>Bruto</th>
+                </tr>
+            </thead>
+            <tbody id="tablaElementos">
+                <!-- Aquí se mostrarán los elementos -->
+            </tbody>
+        </table>
+
         <div class="d-grid gap-2">
-            <button class="btn btn-primary mt-2" type="button" id="btnNuevo">NUEVO</button>
+            <button class="btn btn-primary mt-3" type="button" id="btnNuevo">NUEVO</button>
 
         </div>
     </div>
