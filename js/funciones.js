@@ -6,7 +6,7 @@ function validaPeriodo(periodo){
 
     if(isNaN(parseInt(mesaux)) || isNaN(parseInt(anoaux))){
         Swal.fire({
-            title: "Ingreso un formato no permitido!"
+            title: "Ingreso un formato de PERIODO no permitido!"
         })
 
         condicion=false;

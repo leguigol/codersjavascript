@@ -50,6 +50,8 @@ const sumaanti=document.querySelector('#sumaanti')
 const bruto=document.querySelector('#bruto')
 const btnIngresar = document.getElementById('btnIngresar');
 
+let valido=false;
+
 botonCalcular.addEventListener("click", function(e){
     e.preventDefault();
     if(nombre.value===''){
@@ -84,54 +86,61 @@ botonCalcular.addEventListener("click", function(e){
         periodo.focus()
     }
     validaPeriodo(periodo.value)
-
-    empleado.nombre=nombre.value;
-    empleado.apellido=apellido.value;
-
-    console.log('Fecha de ingreso'+fechaing.value)
-    const valorFecha=new Date(fechaing.value);
-    const dia=valorFecha.getDate()+1;
-    const mes=valorFecha.getMonth();
-    const ano=valorFecha.getFullYear();
-
-    const partesFecha = fechaing.value.split('-');
-
-// Obtener los componentes
-    const año3 = partesFecha[0];
-    const mes3 = partesFecha[1];
-    const día3 = partesFecha[2];
-
-// Crear la fecha en formato "dd/mm/aaaa"
-    const fechaEnFormatoDeseado = `${día3}/${mes3}/${año3}`;
-    console.log(fechaEnFormatoDeseado);
-
-    const antiguedad=calcularAntiguedad(valorFecha);
-    empleado.fechaingreso=fechaing;
-    empleado.antiguedad=antiguedad;    
-    empleado.categoria=categoria.value;
-
-    // console.log('Fecha ingreso: '+fechaing.value);
-    // console.log('Categoria:'+empleado.categoria);
-
-    let mesp=empleado.periodo.substring(0,2);
-    let anop=empleado.periodo.substring(2,4);
-
-    empleado.basico=funBasico(mesp,anop,empleado.categoria);
+    valido=true;
+    if(valido){
+        empleado.nombre=nombre.value;
+        empleado.apellido=apellido.value;
     
-    sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
-    sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
-
-    nombre2.textContent="Nombre:"+empleado.nombre;
-    apellido2.textContent="Apellido:"+empleado.apellido;
-    anti2.textContent="% Antig: "+parseInt(porcentajeAntiguedad(empleado.antiguedad));
-    feingreso2.textContent="Fecha de ingreso: "+fechaEnFormatoDeseado;
-    cate2.textContent="Categoria: "+categorias[empleado.categoria].nomcate;
-    periodo2.textContent="Periodo:"+empleado.periodo;
-    basico.textContent="Basico: "+empleado.basico;
-    sumaanti.textContent="$ antiguedad: "+sumaAntiguedad.toFixed(2);
-    bruto.textContent="Total Bruto: "+sumaBruto.toFixed(2);
-
-    btnIngresar.classList.remove('invisible');
+        console.log('Fecha de ingreso'+fechaing.value)
+        const valorFecha=new Date(fechaing.value);
+        const dia=valorFecha.getDate()+1;
+        const mes=valorFecha.getMonth();
+        const ano=valorFecha.getFullYear();
+    
+        const partesFecha = fechaing.value.split('-');
+    
+    // Obtener los componentes
+        const año3 = partesFecha[0];
+        const mes3 = partesFecha[1];
+        const día3 = partesFecha[2];
+    
+    // Crear la fecha en formato "dd/mm/aaaa"
+        const fechaEnFormatoDeseado = `${día3}/${mes3}/${año3}`;
+        console.log(fechaEnFormatoDeseado);
+    
+        const antiguedad=calcularAntiguedad(valorFecha);
+        empleado.fechaingreso=fechaing;
+        empleado.antiguedad=antiguedad;    
+        empleado.categoria=categoria.value;
+    
+        // console.log('Fecha ingreso: '+fechaing.value);
+        // console.log('Categoria:'+empleado.categoria);
+    
+        let mesp=empleado.periodo.substring(0,2);
+        let anop=empleado.periodo.substring(2,4);
+    
+        empleado.basico=funBasico(mesp,anop,empleado.categoria);
+        
+        sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
+        sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
+    
+        nombre2.textContent="Nombre:"+empleado.nombre;
+        apellido2.textContent="Apellido:"+empleado.apellido;
+        anti2.textContent="% Antig: "+parseInt(porcentajeAntiguedad(empleado.antiguedad));
+        feingreso2.textContent="Fecha de ingreso: "+fechaEnFormatoDeseado;
+        cate2.textContent="Categoria: "+categorias[empleado.categoria].nomcate;
+        periodo2.textContent="Periodo:"+empleado.periodo;
+        basico.textContent="Basico: "+empleado.basico;
+        sumaanti.textContent="$ antiguedad: "+sumaAntiguedad.toFixed(2);
+        bruto.textContent="Total Bruto: "+sumaBruto.toFixed(2);
+    
+        btnIngresar.classList.remove('invisible');
+            
+    }else{
+        Swal.fire({
+            title: "Hay campos no aceptados"
+        })
+    }        
 
 })
 
