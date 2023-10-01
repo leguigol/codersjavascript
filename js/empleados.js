@@ -10,6 +10,9 @@ class Carga {
     }
 }
 
+let sumaAntiguedad;
+let sumaBruto;
+
 const botonCalcular=document.querySelector('#btnCalcular')
 
 const empleado={
@@ -21,6 +24,16 @@ const empleado={
     basico: '',
     periodo: ''
 }
+
+    const categorias=[
+        {numcate: 0,nomcate:'CADETE'},
+        {numcate: 1,nomcate: 'APRENDIZ'},
+        {numcate: 2,nomcate: 'PERS.AUXILIAR'},
+        {numcate: 3,nomcate: 'PERSONAL CON ASIG.ESPECIFICA'},
+        {numcate: 4,nomcate: 'AYUDANTE EN GESTION'},
+        {numcate: 5,nomcate: 'PERSONAL EN GESTION'},
+        {numcate: 6,nomcate: 'FARMACEUTICO'},
+    ]
 
 const nombre=document.querySelector('#nombre')
 const apellido=document.querySelector('#apellido')
@@ -105,19 +118,9 @@ botonCalcular.addEventListener("click", function(e){
 
     empleado.basico=funBasico(mesp,anop,empleado.categoria);
     
-    let sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
-    let sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
+    sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
+    sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
 
-    const categorias=[
-        {numcate: 0,nomcate:'CADETE'},
-        {numcate: 1,nomcate: 'APRENDIZ'},
-        {numcate: 2,nomcate: 'PERS.AUXILIAR'},
-        {numcate: 3,nomcate: 'PERSONAL CON ASIG.ESPECIFICA'},
-        {numcate: 4,nomcate: 'AYUDANTE EN GESTION'},
-        {numcate: 5,nomcate: 'PERSONAL EN GESTION'},
-        {numcate: 6,nomcate: 'FARMACEUTICO'},
-    ]
-    
     nombre2.textContent="Nombre:"+empleado.nombre;
     apellido2.textContent="Apellido:"+empleado.apellido;
     anti2.textContent="% Antig: "+parseInt(porcentajeAntiguedad(empleado.antiguedad));
@@ -130,10 +133,18 @@ botonCalcular.addEventListener("click", function(e){
 
     btnIngresar.classList.remove('invisible');
 
+})
+
+btnIngresar.addEventListener("click", function(e){
+    e.preventDefault();
+
+    sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
+    sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
+
     empleados.push(new Carga(empleado.nombre.toUpperCase(),empleado.apellido.toUpperCase(),categorias[empleado.categoria].nomcate,sumaBruto.toFixed(2)));
     
     localStorage.setItem('ArrayLocal',JSON.stringify(empleados));
 
     document.location.href="index.html";
-})
 
+})    
