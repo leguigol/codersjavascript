@@ -67,9 +67,14 @@ if (elementosAlmacenados) {
     console.log('No hay elementos almacenados en localStorage.');
 }
 
-
 const botonNuevo=document.querySelector('#btnNuevo')
 
 botonNuevo.addEventListener("click", function(){
     window.location.href="empleados.html";
+})
+
+const btnBuscar=document.querySelector('#btnBuscar');
+const cadena=document.querySelector('#txtBusqueda');
+btnBuscar.addEventListener("click", function(){
+    window.location.href='buscar.html?cadena='+cadena.value;
 })

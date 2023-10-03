@@ -30,7 +30,7 @@ const empleado={
     periodo: ''
 }
 
-    const categorias=[
+const categorias=[
         {numcate: 0,nomcate:'CADETE'},
         {numcate: 1,nomcate: 'APRENDIZ'},
         {numcate: 2,nomcate: 'PERS.AUXILIAR'},
@@ -38,7 +38,7 @@ const empleado={
         {numcate: 4,nomcate: 'AYUDANTE EN GESTION'},
         {numcate: 5,nomcate: 'PERSONAL EN GESTION'},
         {numcate: 6,nomcate: 'FARMACEUTICO'},
-    ]
+]
 
 const nombre=document.querySelector('#nombre')
 const apellido=document.querySelector('#apellido')
