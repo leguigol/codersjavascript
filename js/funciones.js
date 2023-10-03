@@ -122,177 +122,184 @@ function porcentajeAntiguedad(a){
 }
 function funBasico(m,a,c){
     let periodo=m+a;
-    // console.log(periodo);
+    console.log(periodo);
     let basico=0;
     switch (periodo){
-        case periodo='0123':
+        case '0123':
             switch (c){
-                case c=0:
+                case '0':
                     basico=124085.64;
                     break;
-                case c=1:
+                case '1':
                     basico=124085.64;
                     break;
-                case c=2:
+                case '2':
                     basico=131034.41;
                     break;
-                case c=3:
+                case '3':
                     basico=139335.76;
                     break;
-                case c=4:
+                case '4':
                     basico=139335.76;
                     break;
-                case c=5:
+                case '5':
                     basico=170475.20;
                     break;
-                case c=6:
+                case '6':
                     basico=188949.43;
                     break;
             }
-        case periodo='0223':
+        break;    
+        case '0223':
             switch (c){
-                case c=0:
+                case '0':
                     basico=124085.64;
                     break;
-                case c=1:
+                case '1':
                     basico=124085.64;
                     break;
-                case c=2:
+                case '2':
                     basico=131034.41;
                     break;
-                case c=3:
+                case '3':
                     basico=139335.76;
                     break;
-                case c=4:
+                case '4':
                     basico=139335.76;
                     break;
-                case c=5:
+                case '5':
                     basico=170475.20;
                     break;
-                case c=6:
+                case '6':
                     basico=188949.43;
                     break;
             }
-        case periodo='0323':
+        break;    
+        case '0323':
             switch (c){
-                case c=0:
+                case '0':
                     basico=124085.64;
                     break;
-                case c=1:
+                case '1':
                     basico=124085.64;
                     break;
-                case c=2:
+                case '2':
                     basico=131034.41;
                     break;
-                case c=3:
+                case '3':
                     basico=139335.76;
                     break;
-                case c=4:
+                case '4':
                     basico=139335.76;
                     break;
-                case c=5:
+                case '5':
                     basico=170475.20;
                     break;
-                case c=6:
+                case '6':
                     basico=188949.43;
                     break;
             }
-        case periodo='0423':
+        break;    
+        case '0423':
             switch (c){
-                case c=0:
+                case '0':
                     basico=145610.15;
                     break;
-                case c=1:
+                case '1':
                     basico=145610.15;
                     break;
-                case c=2:
+                case '2':
                     basico=153764.30;
                     break;
-                case c=3:
+                case '3':
                     basico=163505.63;
                     break;
-                case c=4:
+                case '4':
                     basico=163505.63;
                     break;
-                case c=5:
+                case '5':
                     basico=200046.68;
                     break;
-                case c=6:
+                case '6':
+                    basico=221725.55;
+                    break;
+            }
+        break;
+        case '0523':
+            switch (c){
+                case '0':
+                    basico=145610.15;
+                    break;
+                case '1':
+                    basico=145610.15;
+                    break;
+                case '2':
+                    basico=153764.30;
+                    break;
+                case '3':
+                    basico=163505.63;
+                    break;
+                case '4':
+                    basico=163505.63;
+                    break;
+                case '5':
+                    basico=200046.68;
+                    break;
+                case '6':
                     basico=221725.55;
                     break;
         }
-        case periodo='0523':
+        break;
+        case '0623':
             switch (c){
-                case c=0:
+                case '0':
                     basico=145610.15;
                     break;
-                case c=1:
+                case '1':
                     basico=145610.15;
                     break;
-                case c=2:
+                case '2':
                     basico=153764.30;
                     break;
-                case c=3:
+                case '3':
                     basico=163505.63;
                     break;
-                case c=4:
+                case '4':
                     basico=163505.63;
                     break;
-                case c=5:
+                case '5':
                     basico=200046.68;
                     break;
-                case c=6:
+                case '6':
                     basico=221725.55;
                     break;
         }
-        case periodo='0623':
+        break;
+        case '0723':
             switch (c){
-                case c=0:
-                    basico=145610.15;
-                    break;
-                case c=1:
-                    basico=145610.15;
-                    break;
-                case c=2:
-                    basico=153764.30;
-                    break;
-                case c=3:
-                    basico=163505.63;
-                    break;
-                case c=4:
-                    basico=163505.63;
-                    break;
-                case c=5:
-                    basico=200046.68;
-                    break;
-                case c=6:
-                    basico=221725.55;
-                    break;
-        }
-        case periodo='0723':
-            switch (c){
-                case c=0:
+                case '0':
                     basico=171819.98;
                     break;
-                case c=1:
+                case '1':
                     basico=171819.98;
                     break;
-                case c=2:
+                case '2':
                     basico=181441.87;
                     break;
-                case c=3:
+                case '3':
                     basico=192936.64;
                     break;
-                case c=4:
+                case '4':
                     basico=192936.64;
                     break;
-                case c=5:
+                case '5':
                     basico=236055.08;
                     break;
-                case c=6:
+                case '6':
                     basico=261636.15;
                     break;
         }
+        break;
 
 
     }

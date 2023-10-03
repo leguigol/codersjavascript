@@ -1,23 +1,37 @@
-const empleadosGuardados = localStorage.getItem('ArrayLocal');
-const empleados = empleadosGuardados ? JSON.parse(empleadosGuardados) : [];
+const urlParams = new URLSearchParams(window.location.search);
+const idEditar = urlParams.get('id');
 
-class Carga {
-    constructor(id,nombre,apellido,fechaing,categoria,periodo,bruto){
-        this.id=id;
-        this.nombre=nombre.toUpperCase();
-        this.apellido=apellido.toUpperCase();
-        this.fechaing=fechaing;
-        this.categoria=categoria;
-        this.periodo=periodo;
-        this.bruto=parseFloat(bruto);
-    }
+const categorias=[
+    {numcate: 0,nomcate:'CADETE'},
+    {numcate: 1,nomcate: 'APRENDIZ'},
+    {numcate: 2,nomcate: 'PERS.AUXILIAR'},
+    {numcate: 3,nomcate: 'PERSONAL CON ASIG.ESPECIFICA'},
+    {numcate: 4,nomcate: 'AYUDANTE EN GESTION'},
+    {numcate: 5,nomcate: 'PERSONAL EN GESTION'},
+    {numcate: 6,nomcate: 'FARMACEUTICO'},
+]
+
+document.getElementById('id').value=idEditar;
+
+// Obtener los elementos almacenados en localStorage
+const elementosAlmacenados = JSON.parse(localStorage.getItem('ArrayLocal'));
+
+// Buscar el elemento que coincide con el ID
+const elementoAEditar = elementosAlmacenados.find(el => el.id === idEditar);
+
+if (elementoAEditar) {
+    // Rellenar el formulario con los valores existentes
+    document.getElementById('nombre').value = elementoAEditar.nombre;
+    document.getElementById('apellido').value = elementoAEditar.apellido;
+    document.getElementById('feing').value = elementoAEditar.fechaing;
+    
+    const selectCategoria=document.getElementById('categoria');
+    selectCategoria.value=elementoAEditar.categoria;
+    document.getElementById('periodo').value=elementoAEditar.periodo;
+
+} else {
+    console.error('No se encontró el elemento a editar en localStorage.');
 }
-
-let sumaAntiguedad;
-let sumaBruto;
-let id;
-
-const botonCalcular=document.querySelector('#btnCalcular')
 
 const empleado={
     id: '',
@@ -29,16 +43,6 @@ const empleado={
     basico: '',
     periodo: ''
 }
-
-    const categorias=[
-        {numcate: 0,nomcate:'CADETE'},
-        {numcate: 1,nomcate: 'APRENDIZ'},
-        {numcate: 2,nomcate: 'PERS.AUXILIAR'},
-        {numcate: 3,nomcate: 'PERSONAL CON ASIG.ESPECIFICA'},
-        {numcate: 4,nomcate: 'AYUDANTE EN GESTION'},
-        {numcate: 5,nomcate: 'PERSONAL EN GESTION'},
-        {numcate: 6,nomcate: 'FARMACEUTICO'},
-    ]
 
 const nombre=document.querySelector('#nombre')
 const apellido=document.querySelector('#apellido')
@@ -54,6 +58,7 @@ const basico=document.querySelector('#basico')
 const sumaanti=document.querySelector('#sumaanti')
 const bruto=document.querySelector('#bruto')
 const btnIngresar = document.getElementById('btnIngresar');
+
 
 botonCalcular.addEventListener("click", function(e){
     let valido=true;
@@ -122,6 +127,9 @@ botonCalcular.addEventListener("click", function(e){
         let mesp=empleado.periodo.substring(0,2);
         let anop=empleado.periodo.substring(2,4);
         
+        console.log(mesp)
+        console.log(anop)
+        console.log(empleado.categoria)
         empleado.basico=funBasico(mesp,anop,empleado.categoria);
             
         sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
@@ -138,22 +146,30 @@ botonCalcular.addEventListener("click", function(e){
         bruto.textContent="Total Bruto: "+sumaBruto.toFixed(2);
         
         marco.classList.remove('invisible');
-        btnIngresar.classList.remove('invisible');    
+        btnModificar.classList.remove('invisible');    
     
     }
             
 
 })
 
-btnIngresar.addEventListener("click", function(e){
+btnModificar.addEventListener("click", function(e){
     e.preventDefault();
 
     sumaAntiguedad=parseFloat(empleado.basico)*parseInt(porcentajeAntiguedad(empleado.antiguedad))/100;
     sumaBruto=parseFloat(empleado.basico)+sumaAntiguedad;
-    empleado.id=Date.now().toString(30);
-    empleados.push(new Carga(empleado.id,empleado.nombre.toUpperCase(),empleado.apellido.toUpperCase(),empleado.fechaingreso,categorias[empleado.categoria].numcate,empleado.periodo,sumaBruto.toFixed(2)));
-    
-    localStorage.setItem('ArrayLocal',JSON.stringify(empleados));
+
+    const datos = JSON.parse(localStorage.getItem('ArrayLocal'));
+
+    const itemEdit=datos.find(item=>item.id===idEditar);
+    itemEdit.nombre=empleado.nombre;
+    itemEdit.apellido=empleado.apellido;
+    itemEdit.fechaing=empleado.fechaingreso;
+    itemEdit.categoria=categorias[empleado.categoria].numcate;
+    itemEdit.periodo=empleado.periodo;
+    itemEdit.bruto=sumaBruto.toFixed(2);
+
+    localStorage.setItem('ArrayLocal',JSON.stringify(datos));
 
     document.location.href="index.html";
 
