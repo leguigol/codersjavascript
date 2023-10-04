@@ -53,12 +53,31 @@ if (elementosAlmacenados) {
         iconosCelda.appendChild(iconElement2);
 
         iconElement2.addEventListener('click', function(){
-            const idEliminar=elemento.id;
-            const elementosAlmacenados = JSON.parse(localStorage.getItem('ArrayLocal'));
-            const elementosActualizados = elementosAlmacenados.filter(el => el.id !== idEliminar);
-            localStorage.setItem('ArrayLocal', JSON.stringify(elementosActualizados));
-            fila.remove();
+            Swal.fire({
+                title: 'Estas seguro ?',
+                text: "De verdad queres borrarlo ?!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                cancelButtonText: 'Cancelar',
+                confirmButtonText: 'Si, borrarlo!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire(
+                    'Borrado!',
+                    'Los datos han sido borrados',
+                    'success'
+                  )
+                  const idEliminar=elemento.id;
+                  const elementosAlmacenados = JSON.parse(localStorage.getItem('ArrayLocal'));
+                  const elementosActualizados = elementosAlmacenados.filter(el => el.id !== idEliminar);
+                  localStorage.setItem('ArrayLocal', JSON.stringify(elementosActualizados));
+                  fila.remove();      
 
+                }
+              })          
+            
         })
 
         tablaElementos.appendChild(fila);
