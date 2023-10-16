@@ -68,9 +68,19 @@ if (elementosAlmacenados) {
 }
 
 const botonNuevo=document.querySelector('#btnNuevo')
+const botonPromise=document.querySelector('#btnPromise')
+const botonFetch=document.querySelector('#btnFetch')
 
 botonNuevo.addEventListener("click", function(){
     window.location.href="empleados.html";
+})
+
+botonPromise.addEventListener("click", function(){
+    window.location.href="cpromesas.html";
+})
+
+botonFetch.addEventListener("click", function(){
+    window.location.href="cfetch.html";
 })
 
 const btnBuscar=document.querySelector('#btnBuscar');

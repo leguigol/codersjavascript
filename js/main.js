@@ -8,17 +8,10 @@ function calcularAntiguedad(f){
     const fechaIngreso2 = new Date(ano2, mes2 - 1, dia2);
 
     const diferenciaAnos = hoy.getFullYear() - fechaIngreso2.getFullYear();
-    const diferenciaMeses = hoy.getMonth() - fechaIngreso2.getMonth();
 
-    // if (diferenciaMeses < 0 || (diferenciaMeses === 0 && hoy.getDate() < fechaIngreso2.getDate())) {
-    //     console.log('La antigüedad es:', diferenciaAnos - 1, 'años');
-    // } else {
-    //     console.log('La antigüedad es:', diferenciaAnos, 'años');
-    // }
     return diferenciaAnos;
 }
 function porcentajeAntiguedad(a){
-    // console.log('valor de a: '+a);
     let a2=parseInt(a)
     let porcentaje=0
     switch (true) {
@@ -88,7 +81,6 @@ function porcentajeAntiguedad(a){
 }
 function funBasico(m,a,c){
     let periodo=m+a;
-    // console.log(periodo);
     let basico=0;
     switch (periodo){
         case periodo='0123':
@@ -316,9 +308,7 @@ while(condicion){
     empleado.apellido=apellido;
     
     const fechaParts = fechaing.split('/');
-    
-    // console.log(fechaParts);
-    
+        
     const dia = parseInt(fechaParts[0], 10);
     const mes = parseInt(fechaParts[1], 10);
     const ano = parseInt(fechaParts[2], 10);
@@ -374,9 +364,6 @@ while(condicion){
         let mesaux=periodo.substring(0,2).trim();
         let anoaux=periodo.substring(2,4).trim();
         
-        // console.log('mesaux: '+mesaux);
-        // console.log('anoaux:'+anoaux);
-
         if(isNaN(parseInt(mesaux)) || isNaN(parseInt(anoaux))){
             console.log('Ingreso un formato no permitido')
         }else{
@@ -405,14 +392,9 @@ while(condicion){
     
     let mesp=empleado.periodo.substring(0,2);
     let anop=empleado.periodo.substring(2,4);
-    
-    // console.log('mesp:'+mesp);
-    // console.log('anpp:'+anop);
-    
+        
     empleado.basico=funBasico(mesp,anop,empleado.categoria);
     
-    // console.log(empleado.basico);    
-
     console.log('-------------------------------------');
     console.log('Basico:         '+empleado.basico);
 
@@ -432,9 +414,6 @@ if(empleados.length>0){
     
     const resultado=empleados.filter((el)=>el.apellido===busqueda.toUpperCase());
     
-    // for(t=0;t<contador;t+=1){
-    //     console.log(empleados[t]);
-    // }
     if(resultado.length===0){
         console.log('No se encontraron resultados con ese apellido');
     }else{
